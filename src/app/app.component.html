@@ -1,0 +1,52 @@
+<div class="container" class="d-flex align-items-center justify-content-center m-5">
+    <div>
+        <div>
+            <select (change)="onTableSizeChange($event)">
+                <option *ngFor="let size of tableSizes">
+                    {{size}}
+                </option>
+            </select>
+        </div>
+        <br>
+        <table class="table table-success table-striped border border-black">
+            <thead class="text-center fs-5 table-bordered table-striped">
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>BRAND</th>
+                <th>CATEGORY</th>
+                <th>DESCRİPTİİON</th>
+                <th>DİSCOUNT PERCENTAGE</th>
+                <th>IMAGES</th>
+                <th>PRICE</th>
+                <th>RATING</th>
+                <th>STOCK</th>
+                <th>THUMBNAIL</th>
+            </thead>
+            <tbody>
+                <tr class="align-middle" cdkDrag cdkDropList *ngFor="let post of POSTS | paginate : {itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index" (cdkDropListDropped)="drop($event)">
+                    <td>{{post.id}}</td>
+                    <td>{{post.title}}</td>
+                    <td>{{post.brand}}</td>
+                    <td>{{post.category}}</td>
+                    <td>{{post.description}}</td>
+                    <td>{{post.discountPercentage}}</td>
+                    <td>Burada carousel ile "image"'leri listelemeye çalıştım ama olmadı.</td>
+                    <td>{{post.price}}</td>
+                    <td>{{post.rating}}</td>
+                    <td>{{post.stock}}</td>
+                    <td><img class="img-fluid" src="{{post.thumbnail}}" alt=""></td>
+    
+                </tr>
+            </tbody>
+        </table>
+    
+        <div>
+            <pagination-controls 
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="onTableDataChange($event)"
+            >
+            </pagination-controls>
+        </div>
+    </div>
+</div>
